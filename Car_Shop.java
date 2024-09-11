@@ -58,9 +58,10 @@ public class Car_Shop extends javax.swing.JFrame {
         prevBtn = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
         geartxt = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        purchase = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         stocktxt = new javax.swing.JTextField();
+        menu1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -125,19 +126,17 @@ public class Car_Shop extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(127, 100, 44));
 
-        carImg.setText("jLabel11");
+        carImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/shop.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(carImg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
+            .addComponent(carImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(carImg, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 28, Short.MAX_VALUE))
+            .addComponent(carImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel5.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
@@ -168,8 +167,9 @@ public class Car_Shop extends javax.swing.JFrame {
             }
         });
 
-        prevBtn.setBackground(new java.awt.Color(255, 255, 255));
+        prevBtn.setBackground(new java.awt.Color(0, 0, 0));
         prevBtn.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        prevBtn.setForeground(new java.awt.Color(255, 255, 255));
         prevBtn.setText("Prev");
         prevBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,8 +177,9 @@ public class Car_Shop extends javax.swing.JFrame {
             }
         });
 
-        nextBtn.setBackground(new java.awt.Color(255, 255, 255));
+        nextBtn.setBackground(new java.awt.Color(0, 0, 0));
         nextBtn.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        nextBtn.setForeground(new java.awt.Color(255, 255, 255));
         nextBtn.setText("Next");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,9 +195,14 @@ public class Car_Shop extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Niagara Engraved", 1, 44)); // NOI18N
-        jButton3.setText("Purchase");
+        purchase.setBackground(new java.awt.Color(255, 255, 255));
+        purchase.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        purchase.setText("Buy");
+        purchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Niagara Engraved", 1, 70)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -211,6 +217,16 @@ public class Car_Shop extends javax.swing.JFrame {
             }
         });
 
+        menu1.setBackground(new java.awt.Color(0, 0, 0));
+        menu1.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        menu1.setForeground(new java.awt.Color(255, 255, 255));
+        menu1.setText("Menu");
+        menu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,7 +234,7 @@ public class Car_Shop extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addGap(120, 120, 120)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -247,28 +263,30 @@ public class Car_Shop extends javax.swing.JFrame {
                                     .addComponent(colortxt, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(geartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(stocktxt, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(prevBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(413, 413, 413))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(445, 445, 445)
+                                .addComponent(prevBtn)
+                                .addGap(45, 45, 45)
+                                .addComponent(nextBtn))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(589, 589, 589)
+                        .addGap(285, 285, 285)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(607, 607, 607)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(584, 584, 584)
-                        .addComponent(jButton3)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                        .addGap(611, 611, 611)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(purchase, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(120, 120, 120)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
+                .addGap(96, 96, 96)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -302,19 +320,21 @@ public class Car_Shop extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(93, 93, 93))
+                        .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(stocktxt, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)))
+                        .addGap(70, 70, 70)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextBtn)
                     .addComponent(prevBtn))
-                .addGap(89, 89, 89)
+                .addGap(50, 50, 50)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(120, 120, 120)
+                .addComponent(purchase)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(menu1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -388,7 +408,7 @@ public class Car_Shop extends javax.swing.JFrame {
             if(rs.next()){
             String price = rs.getString("price");
             String model = rs.getString("model");
-            String make = rs.getString("model");
+            String make = rs.getString("make");
             String brandNew = rs.getString("newBrand");
             String gear = rs.getString("gear");
             String color = rs.getString("color");
@@ -500,6 +520,51 @@ public class Car_Shop extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nextBtnActionPerformed
 
+    private void purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseActionPerformed
+        // TODO add your handling code here:
+        JTextField priced = Car_Shop.pricetxt;
+        JTextField modeled = Car_Shop.modeltxt;
+        String px = priced.getText();
+        String mx = modeled.getText();
+        
+        String query = "SELECT * FROM userTable WHERE userName = ? "; // INSERTS A QUERY STATEMENT USING PS WHICH CONVERTS CODE IN THE SQL ENVIROMENT
+
+        String usernamer = Ekene_SonsAutos.usernametxt.getText();
+        double discount = 0;
+        double wallet = 0;
+        double expenses = 0;
+        double balance = 0;
+        // PS CONVERTS CODE IN THE SQL ENVIROMENT AND THIS SETS THE JFIELDS INTO THE SQL
+        try{
+            ps = getConnection().prepareStatement(query);
+            ps.setString(1, usernamer);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                discount = rs.getDouble("discount");
+                wallet = rs.getDouble("deposit");
+                double pxer = Double.parseDouble(px);
+                expenses = pxer - (discount * pxer) ; 
+                balance = wallet - expenses;
+            }  
+            } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        Payment pay = new Payment();
+        pay.setPayment(px, discount, mx, expenses, balance, wallet);
+        pay.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_purchaseActionPerformed
+
+    private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu1ActionPerformed
+        // TODO add your handling code here:
+       Menu m = new Menu();
+       this.hide();
+       m.setVisible(true); 
+        
+    }//GEN-LAST:event_menu1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -541,7 +606,6 @@ public class Car_Shop extends javax.swing.JFrame {
     private javax.swing.JLabel carImg;
     public static javax.swing.JTextField colortxt;
     public static javax.swing.JTextField geartxt;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -555,12 +619,14 @@ public class Car_Shop extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public static javax.swing.JTextField maketxt;
+    public static javax.swing.JButton menu1;
     public static javax.swing.JTextField mileagetxt;
     public static javax.swing.JTextField modeltxt;
     public static javax.swing.JTextField newtxt;
     private javax.swing.JButton nextBtn;
     private javax.swing.JButton prevBtn;
     public static javax.swing.JTextField pricetxt;
+    private javax.swing.JButton purchase;
     public static javax.swing.JTextField stocktxt;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,12 +5,36 @@
  */
 package ekene;
 
+import Classes.Cars;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import static Classes.Connect.getConnection;
+import static Classes.Connect.ps;
+import static Classes.Connect.rs;
+import static java.awt.image.ImageObserver.ERROR;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Apple
  */
 public class Car_Images extends javax.swing.JFrame {
-
+        static int  identity =1 ;
+        Cars  car = new Cars();
+        ArrayList <Cars> car_imgs ;
     /**
      * Creates new form Car_Images
      */
@@ -27,75 +51,315 @@ public class Car_Images extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        addImage = new javax.swing.JButton();
+        approve = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        idtxt = new javax.swing.JTextField();
+        modeltxt = new javax.swing.JTextField();
+        maketxt = new javax.swing.JTextField();
+        pricetxt = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        idTable = new javax.swing.JTable();
+        nextBtn = new javax.swing.JButton();
+        prevBtn = new javax.swing.JButton();
+        pathf = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        menu1 = new javax.swing.JButton();
+
+        jButton4.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        jButton4.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("jLabel1");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        image.setForeground(new java.awt.Color(255, 255, 255));
+        image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        image.setText("IMAGE");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
+            .addComponent(image, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
+            .addComponent(image, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        addImage.setBackground(new java.awt.Color(0, 0, 0));
+        addImage.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        addImage.setForeground(new java.awt.Color(255, 255, 255));
+        addImage.setText("ADD IMAGE");
+        addImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addImageActionPerformed(evt);
+            }
+        });
+
+        approve.setBackground(new java.awt.Color(0, 0, 0));
+        approve.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        approve.setForeground(new java.awt.Color(255, 255, 255));
+        approve.setText("APPROVE IMAGE");
+        approve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveActionPerformed(evt);
+            }
+        });
+
+        remove.setBackground(new java.awt.Color(0, 0, 0));
+        remove.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        remove.setForeground(new java.awt.Color(255, 255, 255));
+        remove.setText("REMOVE IMAGE");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(addImage, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(approve, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(addImage, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+                .addComponent(approve, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+                .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel8.setText("CarID");
+
+        jLabel7.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel7.setText("Model");
+
+        jLabel3.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel3.setText("Car Make");
+
+        jLabel6.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel6.setText("Price($)");
+
+        idtxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        idtxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        idtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idtxtActionPerformed(evt);
+            }
+        });
+
+        modeltxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        modeltxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        modeltxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeltxtActionPerformed(evt);
+            }
+        });
+
+        maketxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        maketxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        maketxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maketxtActionPerformed(evt);
+            }
+        });
+
+        pricetxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        pricetxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pricetxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pricetxtActionPerformed(evt);
+            }
+        });
+
+        idTable.setFont(new java.awt.Font("Niagara Engraved", 1, 24)); // NOI18N
+        idTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        idTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                idTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(idTable);
+
+        nextBtn.setBackground(new java.awt.Color(255, 255, 255));
+        nextBtn.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        nextBtn.setText("Next");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBtnActionPerformed(evt);
+            }
+        });
+
+        prevBtn.setBackground(new java.awt.Color(255, 255, 255));
+        prevBtn.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        prevBtn.setText("Prev");
+        prevBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(83, 83, 83)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(maketxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                            .addComponent(modeltxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idtxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pricetxt)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(prevBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 299, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(modeltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(maketxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pricetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nextBtn)
+                            .addComponent(prevBtn)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
         );
+
+        pathf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pathf.setForeground(new java.awt.Color(51, 51, 51));
+        pathf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pathf.setText("#########");
+
+        jLabel11.setFont(new java.awt.Font("Niagara Engraved", 1, 70)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Car Images");
+
+        menu1.setBackground(new java.awt.Color(0, 0, 0));
+        menu1.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        menu1.setForeground(new java.awt.Color(255, 255, 255));
+        menu1.setText("MENU");
+        menu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(166, 166, 166))
+                        .addGap(170, 170, 170)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(120, 120, 120)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pathf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(907, 907, 907)
+                        .addComponent(jLabel11)))
+                .addGap(170, 170, 170))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(menu1)
+                .addGap(953, 953, 953))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel11)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(121, 121, 121)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pathf)
+                .addGap(65, 65, 65)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(menu1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,7 +374,218 @@ public class Car_Images extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    //As the name implies used to resize images to fit my Jlabel
+    public void displayImg(  byte[] byte_img, int width, int height, JLabel imageLabel){
+   
+        ImageIcon imagery = new ImageIcon(byte_img); // This gets our image from its path
+        Image img = imagery.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);// This resizes the image
+        imageLabel.setIcon(new ImageIcon(img));
+        
+    }
+    
+    public void resizedImg( String path, int width, int height, JLabel imageLabel){
+
+    ImageIcon imagery = new ImageIcon(path); // This gets our image from its path
+    Image img = imagery.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);// This resizes the image
+    imageLabel.setIcon(new ImageIcon(img));
+
+}
+    
+    
+    public String addImg(){
+    JFileChooser choose = new JFileChooser();
+    choose.setDialogTitle("Select Your Car Image/Brand");
+    choose.setCurrentDirectory(new File("C:\\Users\\Apple\\Documents\\NetBeansProject\\Ekene&SonsAutos\\build\\classes\\Images\\car_img"));
+    FileNameExtensionFilter filter = new  FileNameExtensionFilter("image", ".png", ".jpg", ".webp");
+    choose.addChoosableFileFilter(filter);
+    
+    int save = choose.showSaveDialog(null);
+    String path = "";
+    
+    if (save == JFileChooser.APPROVE_OPTION){
+        path = choose.getSelectedFile().getAbsolutePath();
+    }
+    
+    return path;
+    }
+    
+        
+    void removeImg(){
+        image.setIcon(null);
+         pathf.setText("");
+    }
+    
+    
+    private void addImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImageActionPerformed
+        // TODO add your handling code here: 
+        String path = addImg();
+        resizedImg(path, image.getWidth(), image.getHeight(), image);
+        pathf.setText(path);
+    }//GEN-LAST:event_addImageActionPerformed
+
+    private void approveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+          int car_id = Integer.parseInt(Car_Images.idtxt.getText()) ;
+          byte [] car_image = Files.readAllBytes(Paths.get(pathf.getText()));
+         String aQuery = "Insert into carImages(car_id, image) values(?, ?)";
+        
+            try {
+                ps = getConnection().prepareStatement(aQuery);
+                ps.setInt(1, car_id);
+                ps.setBytes(2, car_image);
+                
+            if (ps.executeUpdate() == 1) {
+            JOptionPane.showMessageDialog(this, "Image Added Successfully");
+            }
+            else{
+                        JOptionPane.showMessageDialog(this, "FAILED!!!");
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(Car_Images.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+    }//GEN-LAST:event_approveActionPerformed
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+        // TODO add your handling code here:
+        removeImg();
+    }//GEN-LAST:event_removeActionPerformed
+
+    private void idtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idtxtActionPerformed
+
+    private void modeltxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeltxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modeltxtActionPerformed
+
+    private void maketxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maketxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maketxtActionPerformed
+
+    private void pricetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricetxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pricetxtActionPerformed
+
+    public void addCarId(int car_id){
+    ArrayList <Integer> imgList = Cars.car_id(car_id);
+    String [] column = {"Car ID"};
+    Object [][] row = new Object[imgList.size()][column.length];
+    for(int i = 0; i < imgList.size(); i++){
+        row[i][0] = imgList.get(i);
+        
+        DefaultTableModel model = new DefaultTableModel(row, column);
+        Car_Images.idTable.setModel(model);
+    }
+    }
+        
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        // TODO add your handling code here:
+        identity++;
+        String sqlQuery = "SELECT * FROM carTable WHERE id = ? "; // INSERTS A QUERY STATEMENT USING PS WHICH CONVERTS CODE IN THE SQL ENVIROMENT
+
+        try{
+            ps = getConnection().prepareStatement(sqlQuery);
+            //ps.setInt(1,ider);
+            ps.setInt(1, identity);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                String price = rs.getString("price");
+                String model = rs.getString("model");
+                String make = rs.getString("make");
+                String stock = rs.getString("inStock");
+                int ider = rs.getInt("id");
+                String ids= Integer.toString(ider);
+
+                JTextField idd = Car_Images.idtxt;
+                idd.setText(ids);
+                idd.setEditable(false);
+
+                JTextField models = Car_Images.modeltxt;
+                models.setText(model);
+                models.setEditable(false);
+
+                JTextField makes = Car_Images.maketxt;
+                makes.setText(make);
+                makes.setEditable(false);
+
+                JTextField pricey = Car_Images.pricetxt;
+                pricey.setText(price);
+                pricey.setEditable(false);
+
+               addCarId(ider);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_nextBtnActionPerformed
+
+    private void prevBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBtnActionPerformed
+        // TODO add your handling code here:
+        identity--;
+        String sqlQuery = "SELECT * FROM carTable WHERE id = ? "; // INSERTS A QUERY STATEMENT USING PS WHICH CONVERTS CODE IN THE SQL ENVIROMENT
+
+        try{
+            ps = getConnection().prepareStatement(sqlQuery);
+            //ps.setInt(1,ider);
+            ps.setInt(1, identity);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                String price = rs.getString("price");
+                String model = rs.getString("model");
+                String make = rs.getString("make");
+                String stock = rs.getString("inStock");
+                int ider = rs.getInt("id");
+                String ids= Integer.toString(ider);
+
+                JTextField idd = Car_Images.idtxt;
+                idd.setText(ids);
+                idd.setEditable(false);
+
+                JTextField models = Car_Images.modeltxt;
+                models.setText(model);
+                models.setEditable(false);
+
+                JTextField makes = Car_Images.maketxt;
+                makes.setText(make);
+                makes.setEditable(false);
+
+                JTextField pricey = Car_Images.pricetxt;
+                pricey.setText(price);
+                pricey.setEditable(false);
+                
+                addCarId(ider);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_prevBtnActionPerformed
+
+    private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu1ActionPerformed
+        // TODO add your handling code here:
+        Menu m = new Menu();
+        this.hide();
+        m.setVisible(true);
+    }//GEN-LAST:event_menu1ActionPerformed
+
+    private void idTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idTableMouseClicked
+        // TODO add your handling code here:
+       /* int index = idTable.getSelectedRow();
+        int id = Integer.valueOf(idTable.getValueAt(index, 0).toString());
+        ArrayList <Cars.CarImage> images = car.car_images(id);
+        displayImg(images.get(id).getCarImg(), image.getWidth(), image.getHeight(),  image);*/
+    }//GEN-LAST:event_idTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -148,10 +623,29 @@ public class Car_Images extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton addImage;
+    private javax.swing.JButton approve;
+    public static javax.swing.JTable idTable;
+    public static javax.swing.JTextField idtxt;
+    public static javax.swing.JLabel image;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JTextField maketxt;
+    public static javax.swing.JButton menu1;
+    public static javax.swing.JTextField modeltxt;
+    private javax.swing.JButton nextBtn;
+    private javax.swing.JLabel pathf;
+    private javax.swing.JButton prevBtn;
+    public static javax.swing.JTextField pricetxt;
+    private javax.swing.JButton remove;
     // End of variables declaration//GEN-END:variables
 }

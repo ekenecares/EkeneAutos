@@ -44,7 +44,7 @@ public class Register extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        plantxt = new javax.swing.JComboBox<>();
+        deposittxt = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -60,7 +60,6 @@ public class Register extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(2000, 1400));
-        setPreferredSize(new java.awt.Dimension(2000, 1400));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,7 +129,7 @@ public class Register extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(130, 104, 27));
-        jLabel8.setText("Plan");
+        jLabel8.setText("Deposit");
 
         jLabel9.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(130, 104, 27));
@@ -144,9 +143,9 @@ public class Register extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(130, 104, 27));
         jLabel11.setText("Email");
 
-        plantxt.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        plantxt.setForeground(new java.awt.Color(153, 102, 0));
-        plantxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bronze", "Silver", "Gold" }));
+        deposittxt.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        deposittxt.setForeground(new java.awt.Color(153, 102, 0));
+        deposittxt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10000000", "5000000", "1000000" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,7 +161,7 @@ public class Register extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(passtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                            .addComponent(plantxt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(deposittxt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -218,7 +217,7 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(plantxt, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deposittxt, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85)
                 .addComponent(registerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,30 +272,34 @@ public class Register extends javax.swing.JFrame {
 
         // THIS IS TO SET THE VARIABLES IN THE REGISTRATION FORM
         String fullName = fullnametxt.getText();
-        String plan = (String) plantxt.getSelectedItem();
+        String depositer =  (String) deposittxt.getSelectedItem();
+        double deposit = Double.parseDouble(depositer);
+        String plan = "";
         String email = emailtxt.getText();
         String password = passtxt.getText();
         String username = usernametxt.getText();
         double discount = 0;
         int isAdmin = 0;
-        System.out.print(plan);
         
-        if(fullName.isEmpty() || plan.isEmpty()|| email.isEmpty() || password.isEmpty()){  // THIS IF STATEMENT IS TO MAKE SURE THE INPUT FIELDS ARE FILLED
+        if(fullName.isEmpty() || email.isEmpty() || password.isEmpty()){  // THIS IF STATEMENT IS TO MAKE SURE THE INPUT FIELDS ARE FILLED
             JOptionPane.showMessageDialog(this, "Fill in the neccessary fields");
         }
         else{
             
             //THESE  STATEMENTS ARE TO ASSIGN THE PLANS TO EFFECT THE DISCOUNTS TO THE SQL SERVER THEY WILL BE ORIGINALLY SET TO 0
-            if(plan.equals("Bronze")){
-            discount = 0.05;
+            if(deposit >= 10000000){
+            discount = 0.20;
+            plan = "Gold";
             }
             
-            else if(plan.equals("Silver")){
+            else if(deposit >= 5000000 && deposit<=9999999 ){
             discount = 0.15;
+            plan = "Silver";
             }
                         
-            else if(plan.equals("Gold")){
-            discount = 0.25;
+            else if(deposit <= 4999999){
+            discount = 0.9;
+            plan = "Bronze";
             }
         
         if(username.trim().equals("ekene") || username.trim().equals("admin")){
@@ -304,7 +307,7 @@ public class Register extends javax.swing.JFrame {
             isAdmin = 1; // THIS IF STATEMENT SETS THE ADMIN STATUS TO 1 ORIGINALLY FROM 0, IF 1 IT MEANS USER IS AN ADMIN O MEANS HE IS NOT
         }
 
-        String query = "insert into userTable(fullName, plan, email, pass, userName, discount, isAdmin) values(?,?,?,?,?,?,?)"; // INSERTS A QUERY STATEMENT USING PS WHICH CONVERTS CODE IN THE SQL ENVIROMENT
+        String query = "insert into userTable(fullName, plan, email, pass, userName, discount, isAdmin, deposit) values(?,?,?,?,?,?,?,?)"; // INSERTS A QUERY STATEMENT USING PS WHICH CONVERTS CODE IN THE SQL ENVIROMENT
 
         // PS CONVERTS CODE IN THE SQL ENVIROMENT AND THIS SETS THE JFIELDS INTO THE SQL
         try{
@@ -316,6 +319,7 @@ public class Register extends javax.swing.JFrame {
             ps.setString(5, username);
             ps.setDouble(6, discount);
             ps.setInt(7, isAdmin);
+             ps.setDouble(8, deposit);
             
 
             if (ps.executeUpdate() == 1) {
@@ -376,6 +380,7 @@ public class Register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JComboBox<String> deposittxt;
     public static javax.swing.JTextField emailtxt;
     public static javax.swing.JTextField fullnametxt;
     private javax.swing.JLabel jLabel1;
@@ -390,7 +395,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public static javax.swing.JTextField passtxt;
-    private javax.swing.JComboBox<String> plantxt;
     private javax.swing.JButton registerbtn;
     public static javax.swing.JTextField usernametxt;
     // End of variables declaration//GEN-END:variables

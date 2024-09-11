@@ -4,22 +4,33 @@
  * and open the template in the editor.
  */
 package ekene;
+import Classes.Cars;
 import static Classes.Connect.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Apple
  */
 public class Automobiles extends javax.swing.JFrame {
-
+    
+    int id =1;
+    Cars car = new Cars();
+    ArrayList<Cars> cars_list = car.carList();
+        ArrayList<Cars> img_li = car.carList();
+        
     /**
      * Creates new form automobiles
      */
     public Automobiles() {
         initComponents();
+        
+        addCar();
     }
 
     /**
@@ -66,9 +77,11 @@ public class Automobiles extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1700, 1800));
+        setPreferredSize(new java.awt.Dimension(1700, 1800));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1603, 1110));
 
         jLabel8.setFont(new java.awt.Font("Niagara Engraved", 1, 80)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,17 +184,20 @@ public class Automobiles extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("In Stock");
 
-        addImage.setBackground(new java.awt.Color(255, 255, 255));
+        addImage.setBackground(new java.awt.Color(0, 0, 0));
         addImage.setFont(new java.awt.Font("Niagara Engraved", 1, 44)); // NOI18N
+        addImage.setForeground(new java.awt.Color(255, 255, 255));
         addImage.setText("Add Image");
+        addImage.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         addImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addImageActionPerformed(evt);
             }
         });
 
-        addCarbtn.setBackground(new java.awt.Color(255, 255, 255));
+        addCarbtn.setBackground(new java.awt.Color(0, 0, 0));
         addCarbtn.setFont(new java.awt.Font("Niagara Engraved", 1, 44)); // NOI18N
+        addCarbtn.setForeground(new java.awt.Color(255, 255, 255));
         addCarbtn.setText("Add Car To Shop");
         addCarbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,9 +205,15 @@ public class Automobiles extends javax.swing.JFrame {
             }
         });
 
-        viewCar.setBackground(new java.awt.Color(255, 255, 255));
+        viewCar.setBackground(new java.awt.Color(0, 0, 0));
         viewCar.setFont(new java.awt.Font("Niagara Engraved", 1, 44)); // NOI18N
+        viewCar.setForeground(new java.awt.Color(255, 255, 255));
         viewCar.setText("View All Cars");
+        viewCar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCarActionPerformed(evt);
+            }
+        });
 
         resetbtn.setText("jButton1");
         resetbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -204,10 +226,13 @@ public class Automobiles extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(727, 727, 727))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
+                        .addGap(120, 120, 120)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,43 +250,38 @@ public class Automobiles extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addGap(111, 111, 111)
                                 .addComponent(newtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(258, 258, 258)
+                        .addGap(100, 100, 100)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel6))
-                        .addGap(140, 140, 140)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(geartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stocktxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(colortxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mileagetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(viewCar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addCarbtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(325, 325, 325)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel6))
+                                .addGap(130, 130, 130)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(geartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stocktxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(colortxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mileagetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(831, 831, 831)
-                        .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(699, 699, 699)
+                        .addComponent(jLabel8)))
+                .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(701, 701, 701))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addCarbtn)
-                            .addComponent(viewCar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(734, 734, 734))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(addImage)
-                        .addGap(771, 771, 771))))
+                .addComponent(addImage, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(668, 668, 668))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(83, 83, 83)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(pricetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +293,7 @@ public class Automobiles extends javax.swing.JFrame {
                     .addComponent(modeltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(colortxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(40, 40, 40)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maketxt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -285,15 +305,15 @@ public class Automobiles extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(stocktxt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(104, 104, 104)
+                .addGap(83, 83, 83)
                 .addComponent(addImage, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(45, 45, 45)
                 .addComponent(addCarbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(viewCar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(45, 45, 45)
+                .addComponent(viewCar)
+                .addGap(45, 45, 45)
                 .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(58, 58, 58))
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/car_features.jpg"))); // NOI18N
@@ -302,22 +322,60 @@ public class Automobiles extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1700, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1)
+                .addGap(0, 0, 0))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void addCarId(int car_id){
+    ArrayList <Integer> imgList = Cars.car_id(car_id);
+    String [] column = {"Car ID"};
+    Object [][] row = new Object[imgList.size()][column.length];
+    for(int i = 0; i < imgList.size(); i++){
+        row[i][0] = imgList.get(i);
+        
+        DefaultTableModel model = new DefaultTableModel(row, column);
+        Car_Images.idTable.setModel(model);
+    }
+    }
+    
+    public void addCar(){
+        cars_list = car.carList();
+    String [] column = {"Id", "Prices", "Models", "Makes", "Brands", "Gears", "Colors", "Mileages", "Stock"};
+    Object [][] row = new Object[cars_list.size()][column.length];
+    for(int i = 0; i < cars_list.size(); i++){
+        row[i][0] = cars_list.get(i).getId();
+        row[i][1] = cars_list.get(i).price();      
+        row[i][2] = cars_list.get(i).model();      
+        row[i][3] = cars_list.get(i).make();      
+        row[i][4] = cars_list.get(i).newBrand();      
+        row[i][5] = cars_list.get(i).gear();      
+        row[i][6] = cars_list.get(i).color();      
+        row[i][7] = cars_list.get(i).mileage();      
+        row[i][8] = cars_list.get(i).inStock();      
+    }
+    
+    
+    // Create a new table model with the data
+    DefaultTableModel model = new DefaultTableModel(row, column);
+    
+    if (View_Cars.allTableau != null) {
+        View_Cars.allTableau.setModel(model);
+    } else {
+        System.out.println("Table not initialized!");
+    }
+    }
    
     private void pricetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricetxtActionPerformed
         // TODO add your handling code here:
@@ -354,7 +412,6 @@ public class Automobiles extends javax.swing.JFrame {
     private void stocktxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stocktxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_stocktxtActionPerformed
-
 
     private void addCarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCarbtnActionPerformed
         // TODO add your handling code here:
@@ -415,7 +472,67 @@ public class Automobiles extends javax.swing.JFrame {
 
     private void addImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImageActionPerformed
         // TODO add your handling code here:
+        Car_Images carImg = new Car_Images();
+        carImg.setVisible(true);
+        this.hide();
+        
+       String sqlQuery = "SELECT * FROM carTable WHERE id = ? "; // INSERTS A QUERY STATEMENT USING PS WHICH CONVERTS CODE IN THE SQL ENVIROMENT
+
+        try{
+            ps = getConnection().prepareStatement(sqlQuery);
+            //ps.setInt(1,ider);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+            String price = rs.getString("price");
+            String model = rs.getString("model");
+            String make = rs.getString("make");
+            String stock = rs.getString("inStock");
+            int ider = rs.getInt("id");
+            String ids= Integer.toString(ider);
+
+                JTextField idd = Car_Images.idtxt;
+                idd.setText(ids);
+                idd.setEditable(false);
+
+                JTextField models = Car_Images.modeltxt;
+                models.setText(model);
+                models.setEditable(false);
+
+                JTextField makes = Car_Images.maketxt;
+                makes.setText(make);
+                makes.setEditable(false);
+
+                JTextField pricey = Car_Images.pricetxt;
+                pricey.setText(price);
+                pricey.setEditable(false);
+                
+                addCarId(ider);
+                
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+       JLabel images = Car_Images.image;
+       
+       /*
+        String path = "C:\\Users\\Apple\\Documents\\NetBeansProject\\Ekene&SonsAutos\\src\\Images\\car_plans";
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage().getScaledInstance(images.getWidth(), images.getHeight(), Image.SCALE_SMOOTH);// This resizes the image
+        Car_Images.image.setIcon( new ImageIcon(img));
+    */
     }//GEN-LAST:event_addImageActionPerformed
+
+    private void viewCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCarActionPerformed
+        // TODO add your handling code here:
+        View_Cars view = new View_Cars();
+        view.setVisible(true);
+        this.hide();
+        addCar();
+    }//GEN-LAST:event_viewCarActionPerformed
 
     /**
      * @param args the command line arguments

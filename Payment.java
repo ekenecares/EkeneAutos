@@ -5,18 +5,37 @@
  */
 package ekene;
 
+import Classes.Cars;
+import static Classes.Connect.getConnection;
+import static Classes.Connect.ps;
+import static Classes.Connect.rs;
+import Classes.Purchase;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Apple
  */
 public class Payment extends javax.swing.JFrame {
-
+    String priced;
+    double disc;
+    String model;
+    double expense;
+    double balance; 
+    double wallet;
+    
     /**
      * Creates new form Payment
      */
     public Payment() {
         initComponents();
-    }
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,13 +46,40 @@ public class Payment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        modeltxt = new javax.swing.JTextField();
+        discounttxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        pricetxt = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        expensetxt = new javax.swing.JTextField();
+        buybtn = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        balancetxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        wallettxt = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        resetbtn = new javax.swing.JButton();
+        menu1 = new javax.swing.JButton();
+
+        jLabel13.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel13.setText("Balance");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(2378, 1700));
-        setPreferredSize(new java.awt.Dimension(2378, 1700));
+        setMinimumSize(new java.awt.Dimension(2378, 1475));
         setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/car_payment.jpg"))); // NOI18N
@@ -46,22 +92,264 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Niagara Engraved", 1, 100)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("PAYMENT");
+        jLabel8.setText("Payment");
+
+        jLabel6.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel6.setText("Model");
+
+        modeltxt.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        modeltxt.setForeground(new java.awt.Color(102, 102, 102));
+        modeltxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        modeltxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeltxtActionPerformed(evt);
+            }
+        });
+
+        discounttxt.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        discounttxt.setForeground(new java.awt.Color(102, 102, 102));
+        discounttxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        discounttxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discounttxtActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel7.setText("Net Expenses ($)");
+
+        jLabel9.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel9.setText("Discount (%)");
+
+        pricetxt.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        pricetxt.setForeground(new java.awt.Color(204, 0, 51));
+        pricetxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pricetxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pricetxtActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel10.setText("Price ($)");
+
+        expensetxt.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        expensetxt.setForeground(new java.awt.Color(204, 0, 51));
+        expensetxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        expensetxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expensetxtActionPerformed(evt);
+            }
+        });
+
+        buybtn.setBackground(new java.awt.Color(0, 0, 0));
+        buybtn.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        buybtn.setForeground(new java.awt.Color(255, 255, 255));
+        buybtn.setText("Buy");
+        buybtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buybtnActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        jLabel11.setText("Balance {$}");
+
+        balancetxt.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        balancetxt.setForeground(new java.awt.Color(102, 255, 0));
+        balancetxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        balancetxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balancetxtActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel2.setText("n.e = p - (p X d)");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel3.setText(" $p");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel4.setText("%d");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel5.setText("model");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel12.setText("acct balance");
+
+        jLabel14.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+
+        wallettxt.setBackground(new java.awt.Color(0, 0, 0));
+        wallettxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        wallettxt.setForeground(new java.awt.Color(51, 255, 0));
+        wallettxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        wallettxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wallettxtActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Wallet ($)");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("x");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("=");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 29)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("_");
+
+        resetbtn.setBackground(new java.awt.Color(0, 0, 0));
+        resetbtn.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        resetbtn.setForeground(new java.awt.Color(255, 255, 255));
+        resetbtn.setText("Reset");
+        resetbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetbtnActionPerformed(evt);
+            }
+        });
+
+        menu1.setBackground(new java.awt.Color(0, 0, 0));
+        menu1.setFont(new java.awt.Font("Niagara Engraved", 1, 40)); // NOI18N
+        menu1.setForeground(new java.awt.Color(255, 255, 255));
+        menu1.setText("Menu");
+        menu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(562, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(556, 556, 556))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel9))
+                                .addGap(140, 140, 140)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(expensetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pricetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(discounttxt, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modeltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(balancetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(291, 291, 291)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(wallettxt, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(53, 53, 53)
+                                .addComponent(buybtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(639, 639, 639)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resetbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(572, 572, 572)
+                        .addComponent(jLabel8)))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modeltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pricetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel15)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(discounttxt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel16)
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(expensetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel17)
+                                .addGap(50, 50, 50))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(109, 109, 109)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(balancetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel3)))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wallettxt, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buybtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resetbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,15 +365,189 @@ public class Payment extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1708, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    public void setPayment(String priced, double disc, String model, double expense, double balance, double wallet){
+            String discout = Double.toString(disc);
+            String expenses = Double.toString(expense);
+            String balances = Double.toString(balance);
+            String wallets = Double.toString(wallet);
+
+            pricetxt.setText(priced);
+            pricetxt.setEditable(false);
+            this.priced = priced;
+
+            discounttxt.setText(discout);
+            discounttxt.setEditable(false);
+            this.disc = disc;
+            
+            modeltxt.setText(model);
+            modeltxt.setEditable(false);
+            this.model = model;
+            
+            expensetxt.setText(expenses);
+            expensetxt.setEditable(false);
+            this.expense = expense;
+            
+            balancetxt.setText(balances);
+            balancetxt.setEditable(false);
+            this.balance = balance;
+            
+            wallettxt.setText(wallets);
+            wallettxt.setEditable(false);
+            this.wallet = wallet;
+    }
+    
+    public double getExpenses(){
+        return expense;
+    }
+    
+    public double getWallets(){
+        return wallet;
+    }
+    
+        public String getPrice(){
+        return priced;
+    }
+    
+    public double getDiscount(){
+        return disc;
+    }
+    
+        public String getModel(){
+        return model;
+    }
+    
+    public double getBalance(){
+        return balance;
+    }
+    
+
+    private void modeltxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeltxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modeltxtActionPerformed
+
+    private void discounttxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discounttxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discounttxtActionPerformed
+
+    private void pricetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricetxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pricetxtActionPerformed
+
+    private void expensetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expensetxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_expensetxtActionPerformed
+
+    private void balancetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balancetxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_balancetxtActionPerformed
+
+    private void wallettxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wallettxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wallettxtActionPerformed
+
+    private void buybtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buybtnActionPerformed
+        // TODO add your handling code here:
+         
+        String query = "SELECT * FROM userTable WHERE userName = ? ";
+        double deposit = 0;
+        String usernamer = Ekene_SonsAutos.usernametxt.getText();
+
+        try{
+            ps = getConnection().prepareStatement(query);
+            ps.setString(1, usernamer);
+            rs = ps.executeQuery();
+
+        if(rs.next()){
+                    deposit = rs.getDouble("deposit");
+                    Payment pay = new Payment();
+                    double get_expense = getExpenses();
+                    System.out.println(getExpenses());
+
+                    double get_wallet = getWallets();
+                    System.out.println(getWallets());
+                    
+                    if(get_expense < get_wallet){
+                        JOptionPane.showMessageDialog(this, "Car Successfully Bought");
+                        
+                        String n_query = "update userTable set deposit = ? where userName = ?"; 
+                        String username = Ekene_SonsAutos.usernametxt.getText();
+                        
+                        try{
+                            ps = getConnection().prepareStatement(n_query);
+                            double get_balance =  get_wallet - get_expense ;
+                            ps.setDouble(1, get_balance);
+                            ps.setString(2, username);
+                            
+                            int rowsAffected = ps.executeUpdate();
+                            if (rowsAffected > 0) {
+                                System.out.println("User balance updated successfully.");
+                            } else {
+                                System.out.println("User not found or no rows affected.");
+                        } 
+                        }
+                        catch (SQLException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                        
+                        String y_query = "insert into purchaseTable(price, model, discount, expense) values(?, ?, ?, ?)";
+                        
+                        try{
+                            ps = getConnection().prepareStatement(y_query);
+                           int pricer = (int) Double.parseDouble(getPrice());
+                            ps.setInt(1, pricer);
+                            ps.setString(2, getModel());
+                            ps.setDouble(3, getDiscount());
+                            ps.setDouble(4, getExpenses());
+                            
+                            int rowsAffected = ps.executeUpdate();
+                            if (rowsAffected > 0) {
+                                System.out.println("Created Successfully.");
+                            } else {
+                                System.out.println("Failed!!!");
+                        } 
+                        }
+                        catch (SQLException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                        
+                        
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Insufficient Funds");
+                    
+            }  
+            }}   
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_buybtnActionPerformed
+
+    private void resetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetbtnActionPerformed
+        // TODO add your handling code here:
+        pricetxt.setText("");
+        modeltxt.setText("");
+        discounttxt.setText("");
+        balancetxt.setText("");
+        wallettxt.setText("");
+        expensetxt.setText("");
+    }//GEN-LAST:event_resetbtnActionPerformed
+
+    private void menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu1ActionPerformed
+        // TODO add your handling code here:
+        Menu m = new Menu();
+        this.hide();
+        m.setVisible(true);
+
+    }//GEN-LAST:event_menu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,8 +585,33 @@ public class Payment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JTextField balancetxt;
+    private javax.swing.JButton buybtn;
+    javax.swing.JTextField discounttxt;
+    javax.swing.JTextField expensetxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    public static javax.swing.JButton menu1;
+    javax.swing.JTextField modeltxt;
+    javax.swing.JTextField pricetxt;
+    private javax.swing.JButton resetbtn;
+    javax.swing.JTextField wallettxt;
     // End of variables declaration//GEN-END:variables
 }

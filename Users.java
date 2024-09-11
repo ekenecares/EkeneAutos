@@ -42,7 +42,7 @@ public class Users extends javax.swing.JFrame {
         userNametxt = new javax.swing.JTextField();
         emailtxt = new javax.swing.JTextField();
         planstxt = new javax.swing.JTextField();
-        editbtn = new javax.swing.JButton();
+        menubtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         discounttxt = new javax.swing.JTextField();
 
@@ -66,7 +66,9 @@ public class Users extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("FullName");
 
+        fullnametxt.setBackground(new java.awt.Color(0, 0, 0));
         fullnametxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        fullnametxt.setForeground(new java.awt.Color(255, 255, 255));
         fullnametxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fullnametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +88,9 @@ public class Users extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Plans");
 
+        userNametxt.setBackground(new java.awt.Color(0, 0, 0));
         userNametxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        userNametxt.setForeground(new java.awt.Color(255, 255, 255));
         userNametxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         userNametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +98,9 @@ public class Users extends javax.swing.JFrame {
             }
         });
 
+        emailtxt.setBackground(new java.awt.Color(0, 0, 0));
         emailtxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        emailtxt.setForeground(new java.awt.Color(255, 255, 255));
         emailtxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         emailtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +108,9 @@ public class Users extends javax.swing.JFrame {
             }
         });
 
+        planstxt.setBackground(new java.awt.Color(0, 0, 0));
         planstxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        planstxt.setForeground(new java.awt.Color(255, 255, 255));
         planstxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         planstxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,12 +118,12 @@ public class Users extends javax.swing.JFrame {
             }
         });
 
-        editbtn.setBackground(new java.awt.Color(255, 255, 255));
-        editbtn.setFont(new java.awt.Font("Niagara Engraved", 1, 45)); // NOI18N
-        editbtn.setText("Edit Details");
-        editbtn.addActionListener(new java.awt.event.ActionListener() {
+        menubtn.setBackground(new java.awt.Color(255, 255, 255));
+        menubtn.setFont(new java.awt.Font("Niagara Engraved", 1, 45)); // NOI18N
+        menubtn.setText("Menu");
+        menubtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editbtnActionPerformed(evt);
+                menubtnActionPerformed(evt);
             }
         });
 
@@ -123,7 +131,9 @@ public class Users extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Discount");
 
+        discounttxt.setBackground(new java.awt.Color(0, 0, 0));
         discounttxt.setFont(new java.awt.Font("Niagara Engraved", 1, 35)); // NOI18N
+        discounttxt.setForeground(new java.awt.Color(255, 255, 255));
         discounttxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         discounttxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +167,7 @@ public class Users extends javax.swing.JFrame {
                         .addComponent(jLabel8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(595, 595, 595)
-                        .addComponent(editbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(menubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(429, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,7 +196,7 @@ public class Users extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(discounttxt, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(150, 150, 150)
-                .addComponent(editbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(413, Short.MAX_VALUE))
         );
 
@@ -226,10 +236,12 @@ public class Users extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_planstxtActionPerformed
 
-    private void editbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbtnActionPerformed
- 
+    private void menubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menubtnActionPerformed
+                Menu m = new Menu();
+                this.hide();
+                m.setVisible(true); 
             
-    }//GEN-LAST:event_editbtnActionPerformed
+    }//GEN-LAST:event_menubtnActionPerformed
 
     private void discounttxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discounttxtActionPerformed
         // TODO add your handling code here:
@@ -272,7 +284,6 @@ public class Users extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField discounttxt;
-    private javax.swing.JButton editbtn;
     public static javax.swing.JTextField emailtxt;
     public static javax.swing.JTextField fullnametxt;
     private javax.swing.JLabel jLabel1;
@@ -283,6 +294,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton menubtn;
     public static javax.swing.JTextField planstxt;
     public static javax.swing.JTextField userNametxt;
     // End of variables declaration//GEN-END:variables

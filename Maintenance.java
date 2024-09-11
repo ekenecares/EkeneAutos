@@ -34,11 +34,11 @@ public class Maintenance extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2033, Short.MAX_VALUE)
+            .addGap(0, 1226, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1799, Short.MAX_VALUE)
+            .addGap(0, 803, Short.MAX_VALUE)
         );
 
         pack();

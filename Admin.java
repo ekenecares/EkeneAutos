@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package ekene;
+import Classes.Customer;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,6 +15,9 @@ package ekene;
  */
 public class Admin extends javax.swing.JFrame {
 
+    Customer use =new Customer();
+    ArrayList<Customer> users = use.getuser();
+    
     /**
      * Creates new form admin
      */
@@ -30,8 +37,9 @@ public class Admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        paymentbtn = new javax.swing.JButton();
+        customers = new javax.swing.JButton();
         automobilebtn = new javax.swing.JButton();
+        menubtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(2378, 1700));
@@ -50,21 +58,33 @@ public class Admin extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("ADMIN");
 
-        paymentbtn.setBackground(new java.awt.Color(255, 255, 255));
-        paymentbtn.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
-        paymentbtn.setText("CUSTOMERS");
-        paymentbtn.addActionListener(new java.awt.event.ActionListener() {
+        customers.setBackground(new java.awt.Color(0, 0, 0));
+        customers.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        customers.setForeground(new java.awt.Color(255, 255, 255));
+        customers.setText("CUSTOMERS");
+        customers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paymentbtnActionPerformed(evt);
+                customersActionPerformed(evt);
             }
         });
 
-        automobilebtn.setBackground(new java.awt.Color(255, 255, 255));
+        automobilebtn.setBackground(new java.awt.Color(0, 0, 0));
         automobilebtn.setFont(new java.awt.Font("Niagara Engraved", 1, 50)); // NOI18N
+        automobilebtn.setForeground(new java.awt.Color(255, 255, 255));
         automobilebtn.setText("AUTOMOBILES");
         automobilebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 automobilebtnActionPerformed(evt);
+            }
+        });
+
+        menubtn.setBackground(new java.awt.Color(0, 0, 0));
+        menubtn.setFont(new java.awt.Font("Niagara Engraved", 1, 45)); // NOI18N
+        menubtn.setForeground(new java.awt.Color(255, 255, 255));
+        menubtn.setText("Menu");
+        menubtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menubtnActionPerformed(evt);
             }
         });
 
@@ -73,26 +93,32 @@ public class Admin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(378, 378, 378)
+                .addGap(492, 492, 492)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(automobilebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customers, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(451, 451, 451))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(automobilebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(569, 569, 569))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(paymentbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(369, 369, 369)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(menubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(572, 572, 572))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(567, 567, 567))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(415, 415, 415)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(463, 463, 463)
-                .addComponent(paymentbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(automobilebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193)
+                .addComponent(customers, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addComponent(automobilebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addComponent(menubtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -115,11 +141,47 @@ public class Admin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void paymentbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentbtnActionPerformed
+public void setUsers() {
+
+    // Fetch users data
+    users = use.getuser();
+
+    // Define column headers
+    String[] columns = {"ID", "FULLNAME", "PLANS", "EMAIL", "PASSWORD", "USERNAME", "DISCOUNT", "DEPOSIT", "ISADMIN"};
+    Object[][] rows = new Object[users.size()][columns.length];
+
+    // Populate rows with user data
+    for (int i = 0; i < users.size(); i++) {
+        rows[i][0] = users.get(i).getId();
+        rows[i][1] = users.get(i).getFullName();
+        rows[i][2] = users.get(i).getPlan();
+        rows[i][3] = users.get(i).getEmail();
+        rows[i][4] = users.get(i).getPassword();
+        rows[i][5] = users.get(i).getUsername();
+        rows[i][6] = users.get(i).getDiscount();
+        rows[i][7] = users.get(i).getDeposit();
+        rows[i][8] = users.get(i).isAdmin();
+    }
+
+    // Create a new table model with the data
+    DefaultTableModel model = new DefaultTableModel(rows, columns);
+
+    // Ensure the table is initialized and update its model
+    if (Customers.tableau != null) {
+        Customers.tableau.setModel(model);
+    } else {
+        System.out.println("Table not initialized!");
+    }
+
+}
+    
+    private void customersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersActionPerformed
         // TODO add your handling code here:
-        Payment pay = new Payment();
-        pay.setVisible(true);
-    }//GEN-LAST:event_paymentbtnActionPerformed
+        Customers cust = new Customers();
+        cust.setVisible(true);
+        this.hide();
+        setUsers();
+    }//GEN-LAST:event_customersActionPerformed
 
     private void automobilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_automobilebtnActionPerformed
         // TODO add your handling code here:
@@ -127,6 +189,13 @@ public class Admin extends javax.swing.JFrame {
         auto.setVisible(true);
         this.hide();
     }//GEN-LAST:event_automobilebtnActionPerformed
+
+    private void menubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menubtnActionPerformed
+        Menu m = new Menu();
+        this.hide();
+        m.setVisible(true);
+
+    }//GEN-LAST:event_menubtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,9 +235,10 @@ public class Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton automobilebtn;
+    private javax.swing.JButton customers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton paymentbtn;
+    private javax.swing.JButton menubtn;
     // End of variables declaration//GEN-END:variables
 }
